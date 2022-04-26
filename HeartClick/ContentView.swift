@@ -8,9 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var changeColor = false
+    @State private var changeSize = false
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack(spacing: 70) {
+            Text("Click the heart!")
+                .font(.system(.largeTitle))
+            Image(systemName: "heart.fill")
+                .font(.system(size: 200))
+                .foregroundColor(changeColor ? .purple : .red)
+                .scaleEffect(changeSize ? 1.5 : 1)
+                .animation(.default)
+                .onTapGesture {
+                    self.changeColor.toggle()
+                }
+                .onLongPressGesture {
+                    self.changeSize.toggle()
+                }
+        }
     }
 }
 
